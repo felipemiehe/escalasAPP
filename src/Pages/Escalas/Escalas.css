@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.container {
+    max-width: 1200px;
+    min-width: 1000px;
+    max-height: 700px;
+    margin: 0 auto;
+    display: grid;
+    margin-top: 10px;
+
+
+
+    grid-template-areas:
+        "sidebar "
+        "item"
+        "footer";
+
+}
+
+.sidebar {
+    max-width: auto;    
+    height: 70px;
+    border-radius: 10px;
+    grid-area: sidebar;
+    grid-column: sidebar;
+
+
+}
+
+.item {
+    max-width: auto;    
+    height: 590px;
+    grid-area: item;
+    grid-column: item;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+}
+
+
+header {
+    min-width: 1000px;
+}

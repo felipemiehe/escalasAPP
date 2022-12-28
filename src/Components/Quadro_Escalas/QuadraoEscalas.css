@@ -1,0 +1,23 @@
+
+
+th{
+    border:1px solid black;    
+    padding: 0;    
+              
+}
+
+.quadrados{    
+    width: 22px;
+    height: 24px;         
+}
+
+.f{
+    background-color: #d3d3d3;
+    padding: 0 5px 0 5px;
+
+}
+
+.meses {
+    border:1px solid black;    
+}
+

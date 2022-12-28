@@ -1,0 +1,16 @@
+.botoes{
+    padding: 8px 5px 8px 5px;
+    border-radius: 6px;
+    background-color: rgb(123, 126, 124); 
+    color: white;
+    
+}
+
+.botoes:hover{
+  color: rgb(253, 224, 71);
+  background-color: rgb(74, 77, 75); 
+  
+}
+
+
+
