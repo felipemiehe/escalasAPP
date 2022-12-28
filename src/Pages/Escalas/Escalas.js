@@ -7,7 +7,9 @@ import Modal from '../../Components/Modal/Modal';
 import Cab from '../../Components/Cabecalho/Cabecalho';
 import useControleModal from '../../Hooks/UsecontroleModal';
 
+
 export default function Escalas() {
+
     // modal inserir colabadores na escalas
     const [enableModal_criar, closeModal_criar, openModal_criar] = useControleModal();
 
@@ -41,10 +43,10 @@ export default function Escalas() {
 
     function modal_inserir() {
         return (
-            <Modal showModal={enableModal_criar} open={openModal_criar} close={closeModal_criar}>
+            <Modal title={'Inserir funcionários'} showModal={enableModal_criar} open={openModal_criar} close={closeModal_criar}>
                 <div>felipe</div>
 
-                
+
             </Modal>
 
         )
@@ -52,7 +54,7 @@ export default function Escalas() {
 
 
     return (
-        <>
+        <div className='h-full'>
             {modal_inserir()}
             {console.log(dateInicio, dateFim)}
             <Header className="header" user={'felipe'} />
@@ -80,7 +82,7 @@ export default function Escalas() {
 
             </section>
 
-        </>
+        </div>
 
     )
 
