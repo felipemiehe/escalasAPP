@@ -3,9 +3,9 @@ import './QuadraoEscalas.css';
 import { eachDayOfInterval, format } from 'date-fns'
 
 
-export default function Quadraoescalas({ objeto, datass, ...props }) {
+export default function Quadraoescalas({ objeto, datass, nao_esconder, ...props }) {
 
-    
+
 
     // colocar x
     function adicionarFolgas(item, i) {
@@ -15,12 +15,12 @@ export default function Quadraoescalas({ objeto, datass, ...props }) {
 
         } else if (item.folgas[i] === 'X') {
             item.folgas[i] = ' '
-            
+
         }
         let newState = [...objeto];
         objeto = newState
     }
-    
+
 
 
     // function CriaEscala() {
@@ -81,7 +81,7 @@ export default function Quadraoescalas({ objeto, datass, ...props }) {
 
 
     // #### funcao que traforma numeros da sema 1 segunda 0 domingo
-         
+
     function diassemanas(dia, i) {
 
 
@@ -148,44 +148,45 @@ export default function Quadraoescalas({ objeto, datass, ...props }) {
 
     return (
 
-        <>         
+        <>
 
-            <div className="max-w-full h-full p-2">
-                <div className='flex gap-1 border p-1 justify-around rounded items-center'>
+            <div className="w-full h-full p-2">
+                {nao_esconder &&
+                    <div className='flex gap-1 border p-1 justify-around rounded items-center'>
 
-                    <div className='flex gap-1 border p-1 rounded items-center'>
-                        <span title="Afastamento" className='w-5 h-5 font-black text-center bg-orange-700'>A</span>
-                        <p className='text-[0.7em] text-center '>Afastamento</p>
-                    </div>
+                        <div className='flex gap-1 border p-1 rounded items-center'>
+                            <span title="Afastamento" className='w-5 h-5 font-black text-center bg-orange-700'>A</span>
+                            <p className='text-[0.7em] text-center '>Afastamento</p>
+                        </div>
 
-                    <div className='flex gap-1 border p-1 rounded items-center'>
-                        <span title="Compensação de Horas" className='w-5 h-5 font-black text-center bg-purple-900'>C</span>
-                        <p className='text-[0.7em] text-center '>Compensação de Horas</p>
-                    </div>
+                        <div className='flex gap-1 border p-1 rounded items-center'>
+                            <span title="Compensação de Horas" className='w-5 h-5 font-black text-center bg-purple-900'>C</span>
+                            <p className='text-[0.7em] text-center '>Compensação de Horas</p>
+                        </div>
 
-                    <div className='flex gap-1 border p-1 rounded items-center'>
-                        <span title="Férias" className='w-5 h-5 font-black text-center bg-blue-400'>F</span>
-                        <p className='text-[0.7em] text-center '>Férias</p>
-                    </div>
+                        <div className='flex gap-1 border p-1 rounded items-center'>
+                            <span title="Férias" className='w-5 h-5 font-black text-center bg-blue-400'>F</span>
+                            <p className='text-[0.7em] text-center '>Férias</p>
+                        </div>
 
-                    <div className='flex gap-1 border p-1 rounded items-center'>
-                        <span title="Descanso" className='w-5 h-5 font-black text-center bg-green-200'>D</span>
-                        <p className='text-[0.7em] text-center '>Descanso</p>
-                    </div>
+                        <div className='flex gap-1 border p-1 rounded items-center'>
+                            <span title="Descanso" className='w-5 h-5 font-black text-center bg-green-200'>D</span>
+                            <p className='text-[0.7em] text-center '>Descanso</p>
+                        </div>
 
-                    <div className='flex gap-1 border p-1 rounded items-center'>
-                        <span title="Folgas" className='w-5 h-5 font-black text-center bg-yellow-300'>X</span>
-                        <p className='text-[0.7em] text-center '>Folgas</p>
-                    </div>
+                        <div className='flex gap-1 border p-1 rounded items-center'>
+                            <span title="Folgas" className='w-5 h-5 font-black text-center bg-yellow-300'>X</span>
+                            <p className='text-[0.7em] text-center '>Folgas</p>
+                        </div>
 
-                    <div className='flex gap-1 border p-1 rounded items-center'>
-                        <span title="Folgas compensatórias" className='w-5 h-5 font-black text-center bg-pink-700'>FF </span>
-                        <p className='text-[0.7em] text-center '>Folgas compensatórias</p>
-                    </div>
+                        <div className='flex gap-1 border p-1 rounded items-center'>
+                            <span title="Folgas compensatórias" className='w-5 h-5 font-black text-center bg-pink-700'>FF </span>
+                            <p className='text-[0.7em] text-center '>Folgas compensatórias</p>
+                        </div>
 
-                </div>
+                    </div>}
 
-                <table className="text-center pt-1 text-[0.7rem]">
+                <table className="text-center pt-1 text-[0.8rem]">
                     <tbody>
                         <tr >
                             <td ></td>
@@ -196,7 +197,7 @@ export default function Quadraoescalas({ objeto, datass, ...props }) {
                             <td className='border-r border-black'></td>
                             <td className='flex text-[0.60rem] items-center'>
                                 {/* {   datas.filter(i => i.getMonth() === 0).length > 0 && mesesz()} */}
-                                {datass && datass.map((item, i) => (mesesz(item, i)))}
+                                {nao_esconder && (datass.length > 2) && datass.map((item, i) => (mesesz(item, i)))}
 
                             </td>
                         </tr>
@@ -211,7 +212,7 @@ export default function Quadraoescalas({ objeto, datass, ...props }) {
                             <td className='flex text-[0.60rem] items-center'>
                                 {
                                     // obj.map((item, i) => item.data.diassemana.map((c) => (i === 0) ? <div className='quadradao text-center flex'>{c}</div> : ''))
-                                    datass && datass.map((item, i, row) => (diassemanas(item, i, row)))
+                                    nao_esconder && (datass.length > 2) && datass.map((item, i, row) => (diassemanas(item, i, row)))
                                 }
                             </td>
                         </tr>
@@ -221,13 +222,13 @@ export default function Quadraoescalas({ objeto, datass, ...props }) {
                                 <th className='f '>Depart</th>
                                 <th className='f '>Mat</th>
                                 <th className='f '>Nome</th>
-                                <th className='f '>Hrs.</th>
+                                <th className='f '>Hrs. inicial - final</th>
                                 <th className='f '>Folgas</th>
                                 <th className='f '>ASS</th>
                                 <td className='flex'>
                                     {
                                         // add dias da semana                                   
-                                        datass.map((item,i) => (<div className={`${(i % 2 == 0) ? '' : 'bg-slate-300'} border-[1px] border-black quadrados text-sm`}>{item.getDate()}</div>))
+                                        nao_esconder && (datass.length > 2) && datass.map((item, i) => (<div className={`${(i % 2 == 0) ? '' : 'bg-slate-300'} border-[1px] border-black quadrados text-sm`}>{item.getDate()}</div>))
                                     }
 
                                 </td>
@@ -236,16 +237,16 @@ export default function Quadraoescalas({ objeto, datass, ...props }) {
                             <>
                                 <tr className="text-[0.6rem]">
                                     <th >{item.data.departamento}</th>
-                                    <th className='px-[2px]'>{item.data.matricula}</th>
-                                    <th className='px-[2px]'>{item.data.nome}</th>
-                                    <th className='px-[2px]'>{item.data.horario}</th>
-                                    <th className='px-[2px]'></th>
-                                    <th className='px-[2px]' ></th>
+                                    <th className='px-[4px]'>{item.data.matricula}</th>
+                                    <th className='px-[4px]'>{item.data.nome}</th>
+                                    <th className='px-[4px]'>{item.data.horario}</th>
+                                    <th className='px-[4px]'></th>
+                                    <th className='px-[4px]' ></th>
 
                                     <td className='flex'>
                                         <>
                                             {
-                                                item.data.folgas.map((elemento, i) => (elemento !== '') ? <div title={`${item.data.trabalhados[index]}`} onClick={() => adicionarFolgas(item.data, i)} className={`border-[1px] border-black quadrados cursor-pointer`}>{elemento}</div> : '')
+                                                nao_esconder && (datass.length > 2) && item.data.folgas.map((elemento, i) => (elemento !== '') ? <div title={`${item.data.trabalhados[index]}`} onClick={() => adicionarFolgas(item.data, i)} className={`border-[1px] border-black quadrados cursor-pointer`}>{elemento}</div> : '')
 
                                             }
 

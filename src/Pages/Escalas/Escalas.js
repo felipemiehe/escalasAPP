@@ -4,6 +4,7 @@ import Quadroescalas from '../../Components/Quadro_Escalas/QuadroEscalas';
 import Header from '../../Components/Header/Header';
 import './Escalas.css'
 import Modal from '../../Components/Modal/Modal';
+import FromCli from '../../Components/Form/InputClientes';
 import Cab from '../../Components/Cabecalho/Cabecalho';
 import { eachDayOfInterval, format } from 'date-fns'
 
@@ -16,20 +17,20 @@ export default function Escalas() {
     const [enableModal_criar, closeModal_criar, openModal_criar] = useControleModal();
 
 
-    const [obj, setObjet] = useState([{ data: { nome: 'nome', horario: 'horario', matricula: 'matricula', departamento: 'depart', folgas: [], trabalhados: [], dataInicial: 'dataInicial', dataFinal: 'dataFinal' } }])
+    const [obj, setObjet] = useState([])
     const [dateInicio, setDateInicio] = useState()
     const [dateFim, setDateFim] = useState()
 
-    const [datas, setDatas] = useState([])   
+    const [datas, setDatas] = useState([])
 
 
     // criar vetor
-    function HandleCriarObjeto(nome, horario, matricula, depart, folgas, trabalhados, dataInicial, dataFinal) { // handlesetonejto botao inserir
+    function HandleCriarObjeto(nome, horario, matricula, depart, pref, folgas, trabalhados, dataInicial, dataFinal) { // handlesetonejto botao inserir
 
         if (obj.length !== 0) {
-            setObjet([...obj, { data: { nome: nome, horario: horario, matricula: matricula, departamento: depart, folgas: [folgas], trabalhados: [trabalhados], dataInicial: dataInicial, dataFinal: dataFinal } }])
+            setObjet([...obj, { data: { nome: nome, horario: horario, matricula: matricula, departamento: depart, preffolgas: pref, folgas: [folgas], trabalhados: [trabalhados], dataInicial: dataInicial, dataFinal: dataFinal } }])
         } else {
-            setObjet([{ data: { nome: nome, horario: horario, matricula: matricula, departamento: depart, folgas: [folgas], trabalhados: [trabalhados], dataInicial: dataInicial, dataFinal: dataFinal } }])
+            setObjet([{ data: { nome: nome, horario: horario, matricula: matricula, departamento: depart, preffolgas: pref, folgas: [folgas], trabalhados: [trabalhados], dataInicial: dataInicial, dataFinal: dataFinal } }])
         }
 
     }
@@ -37,7 +38,7 @@ export default function Escalas() {
     // CRIAR ESCALAS ####
 
     function CriaEscala() {
-       
+
 
         let dias_seperados_final = dateInicio.split('-');
         let dias_seperados_inicial = dateFim.split('-');
@@ -67,7 +68,7 @@ export default function Escalas() {
         }
 
         setDatas(datas_agora)
-        
+
 
         // Alimentando vetores        
         {
@@ -83,7 +84,7 @@ export default function Escalas() {
         }
 
         let obj_depois_for = [...obj]
-        setObjet(obj_depois_for)       
+        setObjet(obj_depois_for)
 
         // console.log(datas[1].getMonth())        
     }
@@ -104,10 +105,17 @@ export default function Escalas() {
 
     function modal_inserir() {
         return (
-            <Modal title={'Inserir funcionários'} showModal={enableModal_criar} open={openModal_criar} close={closeModal_criar}>
-                <div>felipe</div>
 
+            <Modal title={'Inserir funcionários'} showModal={enableModal_criar} open={openModal_criar} close={closeModal_criar}>
+                <div className='items-center p-2'>
+                    <FromCli func={HandleCriarObjeto} />
+                </div>
+                {obj.length > 0 &&
+                    <div>
+                        <Quadroescalas objeto={obj} datass={datas} nao_esconder={false} />
+                    </div>}
             </Modal>
+
 
         )
     }
@@ -115,7 +123,7 @@ export default function Escalas() {
 
     return (
         <div className='h-full'>
-            {modal_inserir()}  
+            {modal_inserir()}
             {/* {console.log(dateInicio,dateFim)}           */}
             <Header className="header" user={'felipe'} />
             <section className='container'>
@@ -131,9 +139,9 @@ export default function Escalas() {
                     />
                 </div>
 
-                <div className='item overflow-scroll'>                    
-                    <Quadroescalas objeto={obj} datass={datas} />                                       
-                </div>                 
+                <div className='item overflow-scroll'>
+                    <Quadroescalas objeto={obj} datass={datas} nao_esconder={true} />
+                </div>
 
             </section>
 
