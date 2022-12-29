@@ -1,5 +1,3 @@
-import Test from '../../Components/Test';
-
 
 export default function notFound(){
 
