@@ -39,8 +39,9 @@ export default function Escalas() {
     function CriaEscala() {
        
 
-        // let dias_seperados_final = dateInicio.split('-');
-        // let dias_seperados_inicial = dateFim.split('-');
+        let dias_seperados_final = dateInicio.split('-');
+        let dias_seperados_inicial = dateFim.split('-');
+        console.log(dias_seperados_final)
 
         // [0] -- ano -- [1] -- mes -- [2] -- dia
         // console.log(parseInt(dateInicio))
@@ -115,7 +116,7 @@ export default function Escalas() {
     return (
         <div className='h-full'>
             {modal_inserir()}  
-            {console.log(obj)}          
+            {/* {console.log(dateInicio,dateFim)}           */}
             <Header className="header" user={'felipe'} />
             <section className='container'>
                 {/* <BotaoSuspenso itens={data} opcao={opcao} mudarOpcao={escolhe_Opcao} />

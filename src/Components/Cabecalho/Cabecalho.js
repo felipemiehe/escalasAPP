@@ -26,8 +26,8 @@ export default function Cab({ inserir,criar,salvar,minhas,pdf,compartilhar,datai
                 <button onClick={() => {criar()}} className='botoes' >Criar</button>
                 <button onClick={() => {salvar()}} className='botoes' >Salvar</button>
                 <button onClick={() => {minhas()}} className='botoes' >Minhas escalas</button>
-                <button onClick={() => {pdf()}} className='botoes' >baixar PDF</button>
-                <button onClick={() => {compartilhar()}} className='botoes' >compartilhar escala</button>
+                <button onClick={() => {pdf()}} className='botoes' >Baixar PDF</button>
+                <button onClick={() => {compartilhar()}} className='botoes' >Compartilhar escala</button>
 
             </div>
         </>
