@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 // import Maine from "./pages/main/Main";
 import Escalas from "./Pages/Escalas/Escalas";
-import NotFound from "./Pages/Not_FOUND/Not_Found";
+import NotFound from "./Pages/Default/Default";
 
 const baseUrl = () => `/${window.location.pathname.split('/')[1]}`;
 
