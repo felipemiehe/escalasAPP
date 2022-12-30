@@ -6,7 +6,7 @@ export default function Inpt_cliente({ func, ...props }) {
 
 
     const [name, setName] = useState('');
-    const [preferenceOff, setPreferenceOff] = useState('');
+    const [preferenceOff, setPreferenceOff] = useState('SEG');
     const [initialTimer, setInitialTimer] = useState('');
     const [finalTimer, setFinalTimer] = useState('');
     const [matricula, setMatricula] = useState('');
@@ -33,18 +33,19 @@ export default function Inpt_cliente({ func, ...props }) {
     }
 
     const converterdata = {
-        'SEG': 0,
-        'TER': 1,
-        'QUA': 2,
-        'QUI': 3,
-        'SEX': 4,
-        'SAB': 5,
-        'DOM': 6
+        'SEG': 1,
+        'TER': 2,
+        'QUA': 3,
+        'QUI': 4,
+        'SEX': 5,
+        'SAB': 6,
+        'DOM': 0,
+
     }
 
     return (
 
-        <div className=" w-full h-fit p-3 text-[0.8em] flex flex-col gap-1  items-center border rounded bg-slate-200">
+        <div className=" w-full h-fit p-3 text-[0.8em] flex flex-col gap-1  items-center border rounded">
             Nome do funcionario:
             <input value={name}
                 className='input'
@@ -64,7 +65,8 @@ export default function Inpt_cliente({ func, ...props }) {
                 placeholder="Departamento" type="text"
             />
             Preferência de folga:
-            <select onChange={e => setPreferenceOff(e.target.value)}>
+            <select  onChange={e => setPreferenceOff(e.target.value)}>
+                               
                 <option >SEG</option>
                 <option >TER</option>
                 <option >QUA</option>
@@ -93,8 +95,12 @@ export default function Inpt_cliente({ func, ...props }) {
             <Botao nome={'Inserir'} clic={() => inserir()} />
 
             {alert && <Alertas tipo={'Error'} usarIcone={true}>Faltam preencher campos</Alertas>}
-        </div>
 
+            <Botao nome={'Baixar modelo de inserção'} clic={() => console.log(converterdata[preferenceOff])} />
+            <Botao nome={'Inserir arquivo excel'} clic={() => console.log('em desenvolvimento')} />
+            <Botao nome={'Meus funcionários'} clic={() => console.log('em desenvolvimento')} />
+
+        </div>
 
 
 

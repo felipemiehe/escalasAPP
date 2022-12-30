@@ -46,6 +46,10 @@ export default function Escalas() {
     function CriaEscala() {
 
 
+        if(obj.length < 1 ){
+            return 
+        }
+
         const dinicial = dateInicio.split('-');
         const dfinal = dateFim.split('-');
         
@@ -87,7 +91,7 @@ export default function Escalas() {
                     }else{
 
                         obj[i].data.folgas[k] = ' '
-                    }
+                    }                  
 
                     obj[i].data.trabalhados[k] = 'N'
                     obj[i].data.dataInicial = dateInicio
@@ -119,7 +123,7 @@ export default function Escalas() {
     function modal_inserir() {
         return (
 
-            <Modal title={'Inserir funcionários'} showModal={enableModal_criar} open={openModal_criar} close={closeModal_criar}>
+            <Modal title={'Inserir funcionários no modelo escala 6x1'} showModal={enableModal_criar} open={openModal_criar} close={closeModal_criar}>
                 <div className='items-center p-2'>
                     <FromCli func={HandleCriarObjeto} />
                 </div>
@@ -152,7 +156,7 @@ export default function Escalas() {
                     />
                 </div>
 
-                <div className='item overflow-scroll'>
+                <div className='item overflow-auto'>
                     <Quadroescalas objeto={obj} datass={datas} nao_esconder={true} setObjtelevado={Setobjt} />
                 </div>
 

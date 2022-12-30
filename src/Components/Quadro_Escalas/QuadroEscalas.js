@@ -171,41 +171,41 @@ export default function Quadraoescalas({ objeto, datass, nao_esconder, setObjtel
 
             <div className="w-full h-full p-2">
                 {nao_esconder &&
-                    <div className='flex gap-1 border p-1 justify-around rounded items-center'>
+                    <div className='flex gap-1 text-[0.9em] font-bold border p-1 justify-around rounded items-center'>
 
-                        <div className='flex gap-1 border p-1 rounded items-center'>
+                        <div className='flex gap-1 p-1  items-center'>
                             <span title="Afastamento" className='w-5 h-5 font-black text-center bg-orange-700'>A</span>
-                            <p className='text-[0.7em] text-center '>Afastamento</p>
+                            <p className=' text-center '>Afastamento</p>
                         </div>
 
-                        <div className='flex gap-1 border p-1 rounded items-center'>
+                        <div className='flex gap-1  p-1  items-center'>
                             <span title="Compensação de Horas" className='w-5 h-5 font-black text-center bg-purple-900'>C</span>
-                            <p className='text-[0.7em] text-center '>Compensação de Horas</p>
+                            <p className=' text-center '>Compensação de Horas</p>
                         </div>
 
-                        <div className='flex gap-1 border p-1 rounded items-center'>
+                        <div className='flex gap-1  p-1  items-center'>
                             <span title="Férias" className='w-5 h-5 font-black text-center bg-blue-400'>F</span>
-                            <p className='text-[0.7em] text-center '>Férias</p>
+                            <p className=' text-center '>Férias</p>
                         </div>
 
-                        <div className='flex gap-1 border p-1 rounded items-center'>
+                        <div className='flex gap-1  p-1  items-center'>
                             <span title="Descanso" className='w-5 h-5 font-black text-center bg-green-200'>D</span>
-                            <p className='text-[0.7em] text-center '>Descanso</p>
+                            <p className=' text-center '>Descanso</p>
                         </div>
 
-                        <div className='flex gap-1 border p-1 rounded items-center'>
+                        <div className='flex gap-1  p-1  items-center'>
                             <span title="Folgas" className='w-5 h-5 font-black text-center bg-yellow-300'>X</span>
-                            <p className='text-[0.7em] text-center '>Folgas</p>
+                            <p className=' text-center '>Folgas</p>
                         </div>
 
-                        <div className='flex gap-1 border p-1 rounded items-center'>
+                        <div className='flex gap-1  p-1  items-center'>
                             <span title="Folgas compensatórias" className='w-5 h-5 font-black text-center bg-pink-700'>FF </span>
-                            <p className='text-[0.7em] text-center '>Folgas compensatórias</p>
+                            <p className=' text-center '>Folgas compensatórias</p>
                         </div>
 
                     </div>}
 
-                <table className="text-center pt-1 text-[0.8rem]">
+                <table className="text-center mt-1 text-[0.9rem]">
                     <tbody>
                         <tr >
                             <td ></td>
@@ -241,31 +241,31 @@ export default function Quadraoescalas({ objeto, datass, nao_esconder, setObjtel
                                 <th className='f '>Depart</th>
                                 <th className='f '>Mat</th>
                                 <th className='f '>Nome</th>
-                                <th className='f '>Hrs.</th>
+                                <th className='f w-[82px] '>Hrs.</th>
                                 <th className='f '>Folgas</th>
                                 <th className='f '>ASS</th>
                                 <td className='flex'>
                                     {
                                         // add dias da semana                                   
-                                        nao_esconder && (datass.length > 2) && datass.map((item, i) => (<div className={`${(i % 2 == 0) ? '' : 'bg-slate-300'} border-[1px] border-black quadrados text-sm`}>{item.getDate()}</div>))
+                                        nao_esconder && (datass.length > 2) && datass.map((item, i) => (<div className={`${(i % 2 == 0) ? '' : 'bg-slate-500'} border-[1px] border-black quadrados text-sm`}>{item.getDate()}</div>))
                                     }
 
                                 </td>
                             </tr>}
                         {objeto.map((item, index) => (
                             <>
-                                <tr className="text-[0.6rem]">
+                                <tr className="text-[0.7rem]">
                                     <th >{item.data.departamento}</th>
                                     <th className='px-[4px]'>{item.data.matricula}</th>
                                     <th className='px-[4px]'>{item.data.nome}</th>
-                                    <th className='px-[4px]'>{item.data.horario}</th>
+                                    <th className='min-w-[82px]'>{item.data.horario}</th>
                                     <th className='px-[4px]'></th>
                                     <th className='px-[4px]' ></th>
 
                                     <td className='flex'>
                                         <>
                                             {
-                                                nao_esconder && (datass.length > 2) && item.data.folgas.map((elemento, i) => (elemento !== '') ? <div title={`${item.data.trabalhados[index]}`} onClick={() => adicionarFolgas(item.data, i)} className={`border-[1px] border-black quadrados cursor-pointer`}>
+                                                nao_esconder && (datass.length > 2) && item.data.folgas.map((elemento, i) => (elemento !== '') ? <div title={`${item.data.trabalhados[index]}`} onClick={() => adicionarFolgas(item.data, i)} className={`border-[1px] border-black h-[24px] w-[22px] cursor-pointer`}>
                                                 <div className={`text-sm ${gerenciaestados(elemento)}`}>{elemento}</div></div> : '')
 
                                             }

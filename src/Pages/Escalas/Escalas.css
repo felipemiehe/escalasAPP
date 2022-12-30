@@ -40,6 +40,8 @@
     grid-area: item;
     grid-column: item;
     padding-bottom: 4px;
+    border-radius: 10px;
+    background: #d3d0d0
 
 }
 
