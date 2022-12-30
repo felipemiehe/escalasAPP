@@ -3,22 +3,41 @@ import './QuadraoEscalas.css';
 import { eachDayOfInterval, format } from 'date-fns'
 
 
-export default function Quadraoescalas({ objeto, datass, nao_esconder, ...props }) {
+export default function Quadraoescalas({ objeto, datass, nao_esconder, setObjtelevado, ...props }) {
+
+    
+    // opçoes que podem ser usadas na escalas
+    const opções = {
+
+        'A': 'w-full h-full font-black text-center bg-orange-700',
+        'C': 'w-full h-full font-black text-center bg-purple-900',
+        'F': 'w-full h-full font-black text-center bg-blue-400',
+        'D': 'w-full h-full font-black text-center bg-green-200',
+        'X': 'w-full h-full font-black text-center bg-yellow-300',
+        'FF': 'w-full h-full font-black text-center bg-pink-700',
+             
+    }
+
+    // Função para retorna eles de acorda com o elemento(opção)
+    function gerenciaestados(elemento){
+        return opções[elemento]
+    }
 
 
-
-    // colocar x
-    function adicionarFolgas(item, i) {
+     // colocar x
+     function adicionarFolgas(item, i) {
         //console.log(item.folgas[i])
         if (item.folgas[i] === ' ') {
             item.folgas[i] = 'X'
+            
 
         } else if (item.folgas[i] === 'X') {
             item.folgas[i] = ' '
-
+            
         }
         let newState = [...objeto];
-        objeto = newState
+        setObjtelevado(newState)
+        //console.log(newState)
     }
 
 
@@ -222,7 +241,7 @@ export default function Quadraoescalas({ objeto, datass, nao_esconder, ...props 
                                 <th className='f '>Depart</th>
                                 <th className='f '>Mat</th>
                                 <th className='f '>Nome</th>
-                                <th className='f '>Hrs. inicial - final</th>
+                                <th className='f '>Hrs.</th>
                                 <th className='f '>Folgas</th>
                                 <th className='f '>ASS</th>
                                 <td className='flex'>
@@ -246,7 +265,8 @@ export default function Quadraoescalas({ objeto, datass, nao_esconder, ...props 
                                     <td className='flex'>
                                         <>
                                             {
-                                                nao_esconder && (datass.length > 2) && item.data.folgas.map((elemento, i) => (elemento !== '') ? <div title={`${item.data.trabalhados[index]}`} onClick={() => adicionarFolgas(item.data, i)} className={`border-[1px] border-black quadrados cursor-pointer`}>{elemento}</div> : '')
+                                                nao_esconder && (datass.length > 2) && item.data.folgas.map((elemento, i) => (elemento !== '') ? <div title={`${item.data.trabalhados[index]}`} onClick={() => adicionarFolgas(item.data, i)} className={`border-[1px] border-black quadrados cursor-pointer`}>
+                                                <div className={`text-sm ${gerenciaestados(elemento)}`}>{elemento}</div></div> : '')
 
                                             }
 

@@ -35,14 +35,20 @@ export default function Escalas() {
 
     }
 
+    // setobjeto
+
+    function Setobjt(novoObj){
+        setObjet(novoObj)
+    }
+
     // CRIAR ESCALAS ####
 
     function CriaEscala() {
 
 
-        let dias_seperados_final = dateInicio.split('-');
-        let dias_seperados_inicial = dateFim.split('-');
-        console.log(dias_seperados_final)
+        const dinicial = dateInicio.split('-');
+        const dfinal = dateFim.split('-');
+        
 
         // [0] -- ano -- [1] -- mes -- [2] -- dia
         // console.log(parseInt(dateInicio))
@@ -53,8 +59,8 @@ export default function Escalas() {
         // })
 
         const result = eachDayOfInterval({
-            start: new Date(parseInt(2022), parseInt(12) - 1, parseInt(1)),
-            end: new Date(parseInt(2022), parseInt(12) - 1, parseInt(31))
+            start: new Date(parseInt(dinicial[0]), parseInt(dinicial[1]) - 1, parseInt(dinicial[2])),
+            end: new Date(parseInt(dfinal[0]), parseInt(dfinal[1]) - 1, parseInt(dfinal[2]))
         })
 
         //parseInt(dias_seperados_inicial[0]), parseInt(dias_seperados_inicial[1]), parseInt(dias_seperados_inicial[2])
@@ -75,7 +81,14 @@ export default function Escalas() {
             for (var i = 0; i < obj.length; i++) {
                 obj[i].data.folgas = []
                 for (var k = 0; k < result.length; k++) {
-                    obj[i].data.folgas[k] = ' '
+
+                    if(datas_agora[k].getDay() === obj[i].data.preffolgas) {
+                        obj[i].data.folgas[k] = 'X'
+                    }else{
+
+                        obj[i].data.folgas[k] = ' '
+                    }
+
                     obj[i].data.trabalhados[k] = 'N'
                     obj[i].data.dataInicial = dateInicio
                     obj[i].data.dataFinal = dateFim
@@ -86,7 +99,7 @@ export default function Escalas() {
         let obj_depois_for = [...obj]
         setObjet(obj_depois_for)
 
-        // console.log(datas[1].getMonth())        
+        //console.log(obj)        
     }
 
 
@@ -99,7 +112,7 @@ export default function Escalas() {
     }
     function handle_datasFim(fim) {
         setDateFim(fim)
-    }
+    }   
 
     // ########## MODAL ########## //
 
@@ -112,7 +125,7 @@ export default function Escalas() {
                 </div>
                 {obj.length > 0 &&
                     <div>
-                        <Quadroescalas objeto={obj} datass={datas} nao_esconder={false} />
+                        <Quadroescalas objeto={obj} datass={datas} nao_esconder={false} setObjtelevado={()=>Setobjt} />
                     </div>}
             </Modal>
 
@@ -140,7 +153,7 @@ export default function Escalas() {
                 </div>
 
                 <div className='item overflow-scroll'>
-                    <Quadroescalas objeto={obj} datass={datas} nao_esconder={true} />
+                    <Quadroescalas objeto={obj} datass={datas} nao_esconder={true} setObjtelevado={Setobjt} />
                 </div>
 
             </section>

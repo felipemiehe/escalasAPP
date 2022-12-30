@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Input.css"
+import Alertas from "../Alerts/Alerts"
+import Botao from "../Botao/Botao"
 export default function Inpt_cliente({ func, ...props }) {
 
 
@@ -10,12 +12,34 @@ export default function Inpt_cliente({ func, ...props }) {
     const [matricula, setMatricula] = useState('');
     const [depart, setDepart] = useState('');
 
+    const [alert, setAlert] = useState(false)
+
+
     function inserir() {
-        { func(name, initialTimer + '-' + finalTimer, matricula, depart, preferenceOff) }
-        setMatricula('');
-        setFinalTimer('');
-        setInitialTimer('')
-        setName('')
+
+        if ((name && initialTimer && finalTimer && matricula && depart) != '') {
+
+            { func(name, initialTimer + '-' + finalTimer, matricula, depart, converterdata[preferenceOff]) }
+            setMatricula('');
+            setFinalTimer('');
+            setInitialTimer('')
+            setName('')
+        } else {
+            setAlert(true)
+            setTimeout(() => {
+                setAlert(false)
+            }, 3000);
+        }
+    }
+
+    const converterdata = {
+        'SEG': 0,
+        'TER': 1,
+        'QUA': 2,
+        'QUI': 3,
+        'SEX': 4,
+        'SAB': 5,
+        'DOM': 6
     }
 
     return (
@@ -66,8 +90,9 @@ export default function Inpt_cliente({ func, ...props }) {
                 />
             </div>
 
-            <button className="" onClick={() => inserir()}> Inseir </button>
+            <Botao nome={'Inserir'} clic={() => inserir()} />
 
+            {alert && <Alertas tipo={'Error'} usarIcone={true}>Faltam preencher campos</Alertas>}
         </div>
 
 

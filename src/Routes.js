@@ -26,7 +26,7 @@ const Rotas = () => (
         <Routes>
             <Route exact path="/escalas" element={<Escalas />} />         
             {/* <PrivateRoute path="/local" component={Maine}/> */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />            
         </Routes>
     </Router>
 );
