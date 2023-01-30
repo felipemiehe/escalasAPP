@@ -24,8 +24,9 @@ export default function Escalas() {
     const [datas, setDatas] = useState([])
 
 
-    // criar vetor
-    function HandleCriarObjeto(nome, horario, matricula, depart, pref, folgas, trabalhados, dataInicial, dataFinal) { // handlesetonejto botao inserir
+    // criar vetor // handlesetonejto botao inserir
+    
+    function HandleCriarObjeto(nome, horario, matricula, depart, pref, folgas, trabalhados, dataInicial, dataFinal) { 
 
         if (obj.length !== 0) {
             setObjet([...obj, { data: { nome: nome, horario: horario, matricula: matricula, departamento: depart, preffolgas: pref, folgas: [folgas], trabalhados: [trabalhados], dataInicial: dataInicial, dataFinal: dataFinal } }])
@@ -37,7 +38,7 @@ export default function Escalas() {
 
     // setobjeto
 
-    function Setobjt(novoObj){
+    function Setobjt(novoObj) {
         setObjet(novoObj)
     }
 
@@ -46,29 +47,19 @@ export default function Escalas() {
     function CriaEscala() {
 
 
-        if(obj.length < 1 ){
-            return 
+        if (obj.length < 1) {
+            return
         }
 
         const dinicial = dateInicio.split('-');
         const dfinal = dateFim.split('-');
-        
-
-        // [0] -- ano -- [1] -- mes -- [2] -- dia
-        // console.log(parseInt(dateInicio))
-
-        // const result = eachDayOfInterval({
-        //     start: new Date(parseInt(dias_seperados_inicial[0]), parseInt(dias_seperados_inicial[1]) - 1, parseInt(dias_seperados_inicial[2])),
-        //     end: new Date(parseInt(dias_seperados_final[0]), parseInt(dias_seperados_final[1]) - 1, parseInt(dias_seperados_final[2]))
-        // })
+       
 
         const result = eachDayOfInterval({
             start: new Date(parseInt(dinicial[0]), parseInt(dinicial[1]) - 1, parseInt(dinicial[2])),
             end: new Date(parseInt(dfinal[0]), parseInt(dfinal[1]) - 1, parseInt(dfinal[2]))
         })
-
-        //parseInt(dias_seperados_inicial[0]), parseInt(dias_seperados_inicial[1]), parseInt(dias_seperados_inicial[2])
-        //parseInt(dias_seperados_final[0]), parseInt(dias_seperados_final[1]) -1, parseInt(dias_seperados_final[2])
+        
 
 
         let datas_agora = []
@@ -86,12 +77,12 @@ export default function Escalas() {
                 obj[i].data.folgas = []
                 for (var k = 0; k < result.length; k++) {
 
-                    if(datas_agora[k].getDay() === obj[i].data.preffolgas) {
+                    if (datas_agora[k].getDay() === obj[i].data.preffolgas) {
                         obj[i].data.folgas[k] = 'X'
-                    }else{
+                    } else {
 
                         obj[i].data.folgas[k] = ' '
-                    }                  
+                    }
 
                     obj[i].data.trabalhados[k] = 'N'
                     obj[i].data.dataInicial = dateInicio
@@ -116,7 +107,7 @@ export default function Escalas() {
     }
     function handle_datasFim(fim) {
         setDateFim(fim)
-    }   
+    }
 
     // ########## MODAL ########## //
 
@@ -129,7 +120,7 @@ export default function Escalas() {
                 </div>
                 {obj.length > 0 &&
                     <div>
-                        <Quadroescalas objeto={obj} datass={datas} nao_esconder={false} setObjtelevado={()=>Setobjt} />
+                        <Quadroescalas objeto={obj} datass={datas} nao_esconder={false} setObjtelevado={() => Setobjt} />
                     </div>}
             </Modal>
 
@@ -144,16 +135,14 @@ export default function Escalas() {
             {/* {console.log(dateInicio,dateFim)}           */}
             <Header className="header" user={'felipe'} />
             <section className='container'>
-                {/* <BotaoSuspenso itens={data} opcao={opcao} mudarOpcao={escolhe_Opcao} />
-            <Quadroescalas/> 
-            <Botao nome={"clique para mudar"} clic={st}></Botao>           
-            <Botao nome={nome}></Botao>            */}
+
                 <div className='sidebar bg-slate-50 '>
                     <Cab inserir={openModal_criar}
                         datainicio={handle_datasInicio}
                         datafim={handle_datasFim}
                         criar={CriaEscala}
-                    />
+                />
+                
                 </div>
 
                 <div className='item overflow-auto'>

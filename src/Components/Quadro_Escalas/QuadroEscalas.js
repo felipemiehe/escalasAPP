@@ -9,12 +9,12 @@ export default function Quadraoescalas({ objeto, datass, nao_esconder, setObjtel
     // opçoes que podem ser usadas na escalas
     const opções = {
 
-        'A': 'w-full h-full font-black text-center bg-orange-700',
-        'C': 'w-full h-full font-black text-center bg-purple-900',
-        'F': 'w-full h-full font-black text-center bg-blue-400',
-        'D': 'w-full h-full font-black text-center bg-green-200',
-        'X': 'w-full h-full font-black text-center bg-yellow-300',
-        'FF': 'w-full h-full font-black text-center bg-pink-700',
+        'A': 'w-full h-full font-black text-center bg-orange-700', // afastamento
+        'C': 'w-full h-full font-black text-center bg-purple-900', // compensação
+        'F': 'w-full h-full font-black text-center bg-blue-400', // ferias
+        'D': 'w-full h-full font-black text-center bg-green-200', // descanso
+        'X': 'w-full h-full font-black text-center bg-yellow-300', // folgas
+        'FF': 'w-full h-full font-black text-center bg-pink-700', // folgas compensatorias
              
     }
 

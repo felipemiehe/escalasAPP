@@ -16,29 +16,28 @@
     margin-top: 10px;
 
     grid-template-areas:
-        "sidebar "
-        "item"                
+        "sidebar" "sidebar"
+        "item" "item"              
         ;
 
-    grid-template-rows: 75px auto;
+
+    grid-template-rows:  auto auto 90%;
+    
 
 }
 
 .sidebar {
-    max-width: 1200px;
-    height: 70px;
+    max-width: 1200px;    
     border-radius: 10px;
     grid-area: sidebar;
-    grid-column: sidebar;
-
+    height: 70px;  
 
 }
 
 .item {
     max-width: auto;
     height: 100%;    
-    grid-area: item;
-    grid-column: item;
+    grid-area: item;    
     padding-bottom: 4px;
     border-radius: 10px;
     background: #d3d0d0
